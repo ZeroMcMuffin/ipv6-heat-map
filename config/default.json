@@ -1,0 +1,8 @@
+{
+  "csv": {
+    "blocks": "./data/GeoLite2-City-Blocks-IPv6.csv"
+  },
+  "mongo": {
+    "connection" : "mongodb://localhost/geospatial_ips"
+  }
+}
