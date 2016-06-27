@@ -58,4 +58,3 @@ export default class HeatMap extends Component {
     this.props.search(query);
   }
 }
-

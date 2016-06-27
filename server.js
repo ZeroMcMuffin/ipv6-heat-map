@@ -14,8 +14,10 @@ mongoose.connect(config.get('mongo.connection'));
 const app = express();
 
 require('./api/routes/routes')(app);
-app.use(express.static(__dirname + '/public')); 
+app.use(express.static(__dirname + '/public'));
 
+// Watcher running in child process that recursively calls itself on completion
+spawnWatcher();
 
 const middleware = webpackMiddleware(compiler, {
   publicPath: webpackConfig.output.publicPath,
@@ -42,3 +44,21 @@ app.listen(port, '0.0.0.0', function onStart(err) {
   }
   console.info('==>  Listening on port %s. Open up http://0.0.0.0:%s/ in your browser.', port, port);
 });
+
+function spawnWatcher() {
+  const spawn = require('child_process').spawn;
+  const watch = spawn('node', ['scripts/watch.js']);
+
+  watch.stdout.on('data', function(data) {
+    console.log("stdout: " + data);
+  });
+
+  watch.stderr.on('data', function(data) {
+    console.log("stderr: " + data);
+  });
+
+  watch.on('close', function(code) {
+    console.log("child process exited with code " + code);
+    spawnWatcher();
+  });
+}

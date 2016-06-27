@@ -37,7 +37,7 @@ function parseCSV() {
     // Remove explode object up a level and remove lat/long key
     coordsFine = collapseObject(coordsFine);
     coordsCoarse = collapseObject(coordsCoarse);
-    Promise.all([
+    Promise.each([
       storeIps(coordsFine, true),
       storeIps(coordsCoarse, false)
     ]).then(() => {

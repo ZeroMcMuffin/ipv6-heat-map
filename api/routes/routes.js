@@ -6,6 +6,10 @@ const builder = ProtoBuf.loadProtoFile("./api/model/ip.proto");
 let {IpObjectList} = builder.build("Ips");
 
 module.exports = function(app) {
+  
+  /**
+   * Handles search requests.
+   */
   app.get('/api/ips', function(req, res) {
     let {bottomLeftLng, bottomLeftLat, topRightLng, topRightLat, fine} = req.query;
     IpService.search([bottomLeftLng, bottomLeftLat], [topRightLng, topRightLat], fine)
@@ -23,7 +27,5 @@ module.exports = function(app) {
       .error(err=> {
         res.status(500);
       });
-    // res.send(app.get('ips').toBuffer());
-    // res.send({success: true});
   });
 };
