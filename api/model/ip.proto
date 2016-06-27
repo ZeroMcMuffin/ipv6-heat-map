@@ -2,20 +2,6 @@ syntax = "proto3";
 
 package Ips;
 
-
-//message IpObject {
-//    Loc loc = 1;
-//    float count = 2;
-//}
-//
-//message Loc {
-//    repeated float points = 1;
-//}
-//
-//message IpObjectList {
-//    repeated IpObject ips = 1;
-//}
-
 message IpObject {
     float latitude = 1;
     float longitude = 2;

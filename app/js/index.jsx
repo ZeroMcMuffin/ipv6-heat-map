@@ -8,6 +8,6 @@ const store = configureStore();
 
 
 ReactDom.render(
-  <Root store={store} />,
+  <Root store={store}/>,
   document.getElementById('root')
 );

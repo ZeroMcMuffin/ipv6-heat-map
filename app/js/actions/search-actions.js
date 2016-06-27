@@ -10,7 +10,7 @@ export function search(criteria) {
       .then(function(response) {
         return response.arrayBuffer();
       }).then(function(results) {
-        dispatch(searchResults(IpObjectList.decode(results)));
+      dispatch(searchResults(IpObjectList.decode(results)));
     });
   };
 }
@@ -23,12 +23,12 @@ function searchResults(results) {
 }
 
 function serialize(obj) {
-  if(!obj) return "";
+  if (!obj) return "";
   var str = [];
-  for(var p in obj) {
-    if( obj.hasOwnProperty( p ) && obj[p] ) {
-      str.push( encodeURIComponent( p ) + "=" + encodeURIComponent( obj[p] ) );
+  for (var p in obj) {
+    if (obj.hasOwnProperty(p) && obj[p]) {
+      str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
     }
   }
-  return "?"+str.join("&");
+  return "?" + str.join("&");
 }

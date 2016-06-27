@@ -1,20 +1,20 @@
 'use strict';
 
-import React, { Component } from 'react';
-import { Map , Marker, Popup, TileLayer } from 'react-leaflet';
+import React, {Component} from 'react';
+import {Map, Marker, Popup, TileLayer} from 'react-leaflet';
 import HeatmapLayer from 'react-leaflet-heatmap-layer';
 const position = [42.87, -97.38];
 const styles = {height: '600px'};
 
 export default class HeatMap extends Component {
 
-  static propTypes = { points : React.PropTypes.array, search: React.PropTypes.func};
-  static defaultProps = { ips: [] };
+  static propTypes = {points: React.PropTypes.array, search: React.PropTypes.func};
+  static defaultProps = {ips: []};
 
   componentWillMount() {
     this.props.search();
   }
-  
+
   render() {
     const {points} = this.props;
     console.log("Now showing " + points.length + " points");
@@ -30,7 +30,7 @@ export default class HeatMap extends Component {
             points={this.props.points}
             longitudeExtractor={m => m[1]}
             latitudeExtractor={m => m[0]}
-            intensityExtractor={m => parseFloat(m[2])} />
+            intensityExtractor={m => parseFloat(m[2])}/>
           <TileLayer
             url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

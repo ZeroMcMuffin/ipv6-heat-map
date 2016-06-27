@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import * as SearchActions from 'actions/search-actions';
 import HeatMap from 'components/map';
-import { PENDING } from 'constants/api-status';
+import {PENDING} from 'constants/api-status';
 
 class MapApp extends Component {
 
-  static propTypes = { ips: React.PropTypes.array };
-  static defaultProps = { ips: [] };
+  static propTypes = {ips: React.PropTypes.array};
+  static defaultProps = {ips: []};
   
   render() {
-    const { actions, ips, status } = this.props;
+    const {actions, ips, status} = this.props;
 
     return (
       <div>
-        <HeatMap points={ips} search={actions.search} />
+        <HeatMap points={ips} search={actions.search}/>
       </div>
     );
   }

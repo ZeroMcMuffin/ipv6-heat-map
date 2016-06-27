@@ -1,5 +1,5 @@
-import { SEARCH } from 'constants/action-types';
-import { PENDING, SYNCED, ERROR } from 'constants/api-status';
+import {SEARCH} from 'constants/action-types';
+import {PENDING, SYNCED, ERROR} from 'constants/api-status';
 
 const initialState = {
   status: PENDING,
@@ -16,7 +16,7 @@ export default function search(state = initialState, action) {
           item.count
         ];
       });
-      return  Object.assign({},
+      return Object.assign({},
         state,
         {
           status: SYNCED,

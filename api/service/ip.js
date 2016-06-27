@@ -2,27 +2,27 @@
 
 const {IpCoarse, IpFine} = require("./../model/ip");
 
-function search(bottomLeft, topRight, fine = false){
+function search(bottomLeft, topRight, fine = false) {
   let model = (fine) ? IpFine : IpCoarse;
 
-  let criteria = (bottomLeft[0] && topRight[0])
+  let criteria = (bottomLeft[0] && topRight[0] && bottomLeft.length == 2 && topRight.length == 2)
     ? {
-        "loc": {
-          "$geoWithin": {
-            "$box": [
-              bottomLeft,
-              topRight
-            ]
-          }
-        }
+    "loc": {
+      "$geoWithin": {
+        "$box": [
+          bottomLeft,
+          topRight
+        ]
       }
+    }
+  }
     : {};
 
-  return model.find(criteria, { '_id': 0}).lean().exec();
+  return model.find(criteria, {'_id': 0}).lean().exec();
 }
 
 function bulkInsert(ips, fine = true) {
-  console.log("Inserting " + ips.length + " %s ips.", (fine) ? 'fine': 'coarse');
+  console.log("Inserting " + ips.length + " %s ips.", (fine) ? 'fine' : 'coarse');
   let model = (fine) ? IpFine : IpCoarse;
   return model.collection.remove({})
     .then(model.collection.insert(ips));

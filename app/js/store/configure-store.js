@@ -1,7 +1,7 @@
-import { createStore, compose, applyMiddleware } from 'redux';
+import {createStore, compose, applyMiddleware} from 'redux';
 import multi from 'redux-multi';
 import thunk from 'redux-thunk';
-import { persistState } from 'redux-devtools';
+import {persistState} from 'redux-devtools';
 import rootReducer from 'reducers';
 import DevTools from 'containers/dev-tools';
 let middleware = [multi, thunk];
