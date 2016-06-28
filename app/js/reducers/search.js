@@ -2,8 +2,8 @@ import {SEARCH} from 'constants/action-types';
 import {PENDING, SYNCED, ERROR} from 'constants/api-status';
 
 const initialState = {
-  status: PENDING,
-  ips: []
+  ips: [],
+  settings: {}
 };
 
 export default function search(state = initialState, action) {
@@ -18,10 +18,7 @@ export default function search(state = initialState, action) {
       });
       return Object.assign({},
         state,
-        {
-          status: SYNCED,
-          ips: convertedArray
-        }
+        { ips: convertedArray }
       );
       break;
     default:

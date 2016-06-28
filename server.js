@@ -17,7 +17,7 @@ require('./api/routes/routes')(app);
 app.use(express.static(__dirname + '/public'));
 
 // Watcher running in child process that recursively calls itself on completion
-spawnWatcher();
+// spawnWatcher();
 
 const middleware = webpackMiddleware(compiler, {
   publicPath: webpackConfig.output.publicPath,

@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 import {Map, Marker, Popup, TileLayer} from 'react-leaflet';
 import HeatmapLayer from 'react-leaflet-heatmap-layer';
 const position = [42.87, -97.38];
-const styles = {height: '600px'};
+const styles = {height: '90vh'};
 
 export default class HeatMap extends Component {
 
@@ -19,13 +19,13 @@ export default class HeatMap extends Component {
     const {points} = this.props;
     console.log("Now showing " + points.length + " points");
     return (
-      <div>
+      <div style={styles}>
         <Map center={position} zoom={4} style={styles} onMoveend={this.handleMove}>
           <HeatmapLayer
-            max={10000.0}
-            radius={5000000}
+            max={1.0}
+            radius={5}
             minOpacity={0.05}
-            blur={3000}
+            blur={1}
             gradient={{1.0  : 'red'}}
             points={this.props.points}
             longitudeExtractor={m => m[1]}
@@ -36,6 +36,8 @@ export default class HeatMap extends Component {
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
         </Map>
+        This product includes GeoLite2 data created by MaxMind, available from
+        <a href="http://www.maxmind.com">http://www.maxmind.com</a>.
       </div>
     );
   }

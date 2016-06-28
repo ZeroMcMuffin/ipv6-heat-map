@@ -6,6 +6,7 @@ let {IpObjectList} = builder.build("Ips");
 
 export function search(criteria) {
   return dispatch => {
+    
     fetch("/api/ips" + serialize(criteria))
       .then(function(response) {
         return response.arrayBuffer();

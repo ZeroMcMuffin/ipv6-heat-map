@@ -1,3 +1,5 @@
+'use strict';
+
 import {createStore, compose, applyMiddleware} from 'redux';
 import multi from 'redux-multi';
 import thunk from 'redux-thunk';
