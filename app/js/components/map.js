@@ -4,10 +4,12 @@ import React, {Component} from 'react';
 import {Map, Marker, Popup, TileLayer} from 'react-leaflet';
 import HeatmapLayer from 'react-leaflet-heatmap-layer';
 
-const position = [42.87, -97.38];
-const styles = {height: '90vh'};
+const INITIAL_POSITION = [42.87, -97.38];
 const ZOOM_THRESHOLD = 8;
 const INITIAL_ZOOM = 4;
+
+// Make map fit viewport.  Prevents overflow and ensures smaller lat/long boundary for efficient requests.
+const styles = {height: '90vh'};
 
 export default class HeatMap extends Component {
 
@@ -25,13 +27,14 @@ export default class HeatMap extends Component {
 
   render() {
     const {points} = this.props;
+    const {zoom} = this.state;
     console.log("Now showing " + points.length + " points");
-    let markers = (this.state.zoom >= ZOOM_THRESHOLD) ? renderMarkers(points) : null;
-    let heatmap = (this.state.zoom < ZOOM_THRESHOLD)  ? renderHeatMap(points) : renderHeatMap([]);
+    let markers = (zoom >= ZOOM_THRESHOLD) ? renderMarkers(points) : null;
+    let heatmap = (zoom < ZOOM_THRESHOLD)  ? renderHeatMap(points) : renderHeatMap([]);
 
     return (
       <div style={styles}>
-        <Map center={position} zoom={INITIAL_ZOOM} style={styles} onMoveend={this.handleMove}>
+        <Map center={INITIAL_POSITION} zoom={INITIAL_ZOOM} style={styles} onMoveend={this.handleMove}>
           {markers}
           {heatmap}
           <TileLayer
