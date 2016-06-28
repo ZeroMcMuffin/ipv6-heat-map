@@ -16,6 +16,7 @@ You can see a demo [here](http://107.170.40.122/).
 2.  Install the project dependencies: `cd ipv6-heat-map && npm install`
 3.  Massage the csv and populate Mongo:  `node scripts/initialize.js`
 4.  Start the server:  `node server.js`
+5.  Updates to csv will trigger step 3 in a child process: `touch touch data/GeoLite2-City-Blocks-IPv6.csv`
 
 ### GeoLite2 
 This project includes GeoLite2 data created by MaxMind, available from [http://www.maxmind.com](http://www.maxmind.com).
