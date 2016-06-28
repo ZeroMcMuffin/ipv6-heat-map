@@ -6,6 +6,7 @@ message IpObject {
     float latitude = 1;
     float longitude = 2;
     float count = 3;
+    repeated string ips = 4;
 }
 
 message IpObjectList {

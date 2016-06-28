@@ -8,6 +8,7 @@ const {IP_FINE, IP_COARSE} = require('../constants/constants');
 
 var ipSchema = new Schema({
   count: Number,
+  ips: [String],
   loc: {
     type: [Number],  // [<longitude>, <latitude>]
     index: '2d'      // create the geospatial index

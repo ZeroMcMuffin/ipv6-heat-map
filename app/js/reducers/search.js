@@ -13,7 +13,8 @@ export default function search(state = initialState, action) {
         return [
           item.latitude,
           item.longitude,
-          item.count
+          item.count,
+          item.ips
         ];
       });
       return Object.assign({},

@@ -19,7 +19,8 @@ module.exports = function(app) {
           return {
             latitude: item.loc[1],
             longitude: item.loc[0],
-            count: item.count
+            count: item.count,
+            ips: item.ips
           }
         }));
         res.send(IpObjects.toBuffer());

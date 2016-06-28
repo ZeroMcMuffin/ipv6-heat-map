@@ -9,7 +9,12 @@ const styles = {height: '90vh'};
 export default class HeatMap extends Component {
 
   static propTypes = {points: React.PropTypes.array, search: React.PropTypes.func};
-  static defaultProps = {ips: []};
+  static defaultProps = {ips: [], zoom: 4};
+
+  constructor(props) {
+    super(props);
+    this.state = {zoom: props.zoom};
+  }
 
   componentWillMount() {
     this.props.search();
@@ -18,6 +23,7 @@ export default class HeatMap extends Component {
   render() {
     const {points} = this.props;
     console.log("Now showing " + points.length + " points");
+    let markers = (this.state.zoom >= 10) ? renderMarkers(points) : null;
     return (
       <div style={styles}>
         <Map center={position} zoom={4} style={styles} onMoveend={this.handleMove}>
@@ -32,6 +38,7 @@ export default class HeatMap extends Component {
             longitudeExtractor={m => m[1]}
             latitudeExtractor={m => m[0]}
             intensityExtractor={m => parseFloat(m[2])}/>
+          {markers}
           <TileLayer
             url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -48,7 +55,10 @@ export default class HeatMap extends Component {
     let bounds = evt.target.getBounds();
     let southWest = bounds.getSouthWest();
     let northEast = bounds.getNorthEast();
-    let fine = evt.target.getZoom() >= 5;
+    this.setState({
+      zoom: evt.target.getZoom()
+    });
+    let fine = evt.target.getZoom() >= 7;
 
     let query = {
       "bottomLeftLng": southWest.lng,
@@ -61,3 +71,26 @@ export default class HeatMap extends Component {
     this.props.search(query);
   }
 }
+
+const renderMarkers = (points) => {
+  return points.map((point, index) => {
+    return (
+      <Marker position={[point[0], point[1]]} key={index}>
+        <Popup>
+          <span>Point contains {point[2]} IP addresses.</span>
+        </Popup>
+      </Marker>
+    );
+  });
+};
+
+const renderList = (ips) => {
+  console.log(ips);
+   return (
+     <ul>
+      ips.map((ipv6, index) => {
+        <li key={index}>{ipv6}</li>
+      })
+    </ul>
+   );
+};

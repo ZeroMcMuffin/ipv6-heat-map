@@ -64,11 +64,13 @@ function createMap(coordinates) {
     let keyFine = item.latitude+""+item.longitude;
     if( coordsFine.hasOwnProperty(keyFine)) {
       coordsFine[keyFine].count = coordsFine[keyFine].count + 1;
+      coordsFine[keyFine].ips.push(item.network);
     } else {
       coordsFine[keyFine] = {
         latitude:  parseFloat(item.latitude),
         longitude: parseFloat(item.longitude),
-        count: 1
+        count: 1,
+        ips: [item.network]
       };
     }
 
@@ -82,7 +84,8 @@ function createMap(coordinates) {
       coordsCoarse[keyCoarse] = {
         latitude: parseFloat(latCoarse),
         longitude: parseFloat(lngCoarse),
-        count: 1
+        count: 1,
+        ips: []
       };
     }
   });
@@ -99,19 +102,15 @@ function collapseObject(coordinates) {
   return Object.keys(coordinates).map(item => {
     return {
       loc:  [coordinates[item].longitude, coordinates[item].latitude],
+      ips: coordinates[item].ips,
       count:  coordinates[item].count
     };
   });
 }
 
-
 function storeIps(ips, fine = true) {
   return ipService.bulkInsert(ips, fine);
 }
-
-// const initialize = function(){
-//   loadCSV();
-// };
 
 module.exports = loadCSV;
 
