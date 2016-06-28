@@ -4,7 +4,7 @@ A heat map representation of IPv6 Addresses.  GeoLite2 data is parsed and format
 ![alt tag](./screen.png)
 
 ### Demo
-You can see a demo [here](http://107.170.40.122/).
+You can see a demo [here](http://heatmap.allenelks.com/).
 
 ### Requirements
 1. A locally running [Mongodb](https://docs.mongodb.com/manual/installation/) server
