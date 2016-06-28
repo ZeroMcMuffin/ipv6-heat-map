@@ -1,4 +1,8 @@
-
+/* Space out content a bit */
+body, form, ul {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 
 
 /* Absolute Center Spinner */
