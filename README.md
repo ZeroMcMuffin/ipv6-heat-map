@@ -3,9 +3,6 @@ A heat map representation of IPv6 Addresses.  GeoLite2 data is parsed and format
 
 ![alt tag](./screen.png)
 
-### GeoLite2 
-This project includes GeoLite2 data created by MaxMind, available from [http://www.maxmind.com](http://www.maxmind.com).
-
 ### Demo
 You can see a demo [here](http://107.170.40.122/).
 
@@ -20,6 +17,7 @@ You can see a demo [here](http://107.170.40.122/).
 3.  Massage the csv and populate Mongo:  `node scripts/initialize.js`
 4.  Start the server:  `node server.js`
 
-
+### GeoLite2 
+This project includes GeoLite2 data created by MaxMind, available from [http://www.maxmind.com](http://www.maxmind.com).
 
 
