@@ -5,6 +5,7 @@ const {IpCoarse, IpFine} = require("./../model/ip");
 function search(bottomLeft, topRight, fine = false) {
   let model = (fine) ? IpFine : IpCoarse;
 
+  // Get all points within a boundary or all points.
   let criteria = (bottomLeft[0] && topRight[0] && bottomLeft.length == 2 && topRight.length == 2)
     ? {
     "loc": {
