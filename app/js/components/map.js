@@ -22,10 +22,11 @@ export default class HeatMap extends Component {
       <div style={styles}>
         <Map center={position} zoom={4} style={styles} onMoveend={this.handleMove}>
           <HeatmapLayer
-            max={1.0}
-            radius={5}
-            minOpacity={0.05}
-            blur={1}
+            max={0.1}
+            radius={0.1}
+            minOpacity={0.3}
+            blur={0}
+            maxZoom={9}
             gradient={{1.0  : 'red'}}
             points={this.props.points}
             longitudeExtractor={m => m[1]}
