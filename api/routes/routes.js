@@ -25,7 +25,7 @@ module.exports = function(app) {
         }));
         res.send(IpObjects.toBuffer());
       })
-      .error(err=> {
+      .catch(err=> {
         res.status(500);
       });
   });

@@ -37,6 +37,7 @@ export default class HeatMap extends Component {
 
     return (
       <div style={styles}>
+        <a href="https://github.com/ZeroMcMuffin/ipv6-heat-map" target="_blank">Repo</a>
         <Map center={INITIAL_POSITION} zoom={INITIAL_ZOOM} style={styles} onMoveend={this.handleMove}>
           {markers}
           {heatmap}
@@ -45,7 +46,7 @@ export default class HeatMap extends Component {
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'/>
         </Map>
         This product includes GeoLite2 data created by MaxMind, available from
-        <a href="http://www.maxmind.com">http://www.maxmind.com</a>.
+        <a href="http://www.maxmind.com" target="_blank"> http://www.maxmind.com</a>.
       </div>
     );
   }

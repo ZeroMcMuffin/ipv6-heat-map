@@ -39,11 +39,11 @@ app.get('/', function response(req, res) {
     res.sendFile(__dirname+'/app/index.tpl.html');
 });
 
-app.listen(port, '0.0.0.0', function onStart(err) {
+app.listen(port, 'localhost', function onStart(err) {
   if (err) {
     console.log(err);
   }
-  console.info('==>  Listening on port %s. Open up http://0.0.0.0:%s/ in your browser.', port, port);
+  console.info('==> 🌎  Listening on port %s. Open up http://localhost:%s/ in your browser.', port, port);
 });
 
 
