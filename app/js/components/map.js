@@ -23,7 +23,7 @@ export default class HeatMap extends Component {
   render() {
     const {points} = this.props;
     console.log("Now showing " + points.length + " points");
-    let markers = (this.state.zoom >= 10) ? renderMarkers(points) : null;
+    let markers = (this.state.zoom >= 8) ? renderMarkers(points) : null;
     return (
       <div style={styles}>
         <Map center={position} zoom={4} style={styles} onMoveend={this.handleMove}>
@@ -74,10 +74,13 @@ export default class HeatMap extends Component {
 
 const renderMarkers = (points) => {
   return points.map((point, index) => {
+    let label = (point[2] > 2)
+      ? <span>Point contains {point[2]} IP addresses.</span>
+      : <span>Points contains the following ips addresses: {point[3].join(',')}.</span>;
     return (
       <Marker position={[point[0], point[1]]} key={index}>
         <Popup>
-          <span>Point contains {point[2]} IP addresses.</span>
+          {label}
         </Popup>
       </Marker>
     );
