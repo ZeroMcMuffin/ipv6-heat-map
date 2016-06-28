@@ -17,7 +17,8 @@ require('./api/routes/routes')(app);
 app.use(express.static(__dirname + '/public'));
 
 // Watcher running in child process that recursively calls itself on completion
-// spawnWatcher();
+// todo: Currently only works in dev.  Crashes during upload on Ubuntu 16.04
+spawnWatcher();
 
 const middleware = webpackMiddleware(compiler, {
   publicPath: webpackConfig.output.publicPath,
@@ -45,6 +46,10 @@ app.listen(port, '0.0.0.0', function onStart(err) {
   console.info('==>  Listening on port %s. Open up http://0.0.0.0:%s/ in your browser.', port, port);
 });
 
+
+/***
+ * EXPERIMENTAL!  Only works consistently in dev.
+ */
 function spawnWatcher() {
   const spawn = require('child_process').spawn;
   const watch = spawn('node', ['scripts/watch.js']);
