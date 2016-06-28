@@ -5,8 +5,11 @@ import {Map, Marker, Popup, TileLayer} from 'react-leaflet';
 import HeatmapLayer from 'react-leaflet-heatmap-layer';
 
 const INITIAL_POSITION = [42.87, -97.38];
-const ZOOM_THRESHOLD = 8;
-const INITIAL_ZOOM = 4;
+const ZOOM_THRESHOLD = 10;
+const INITIAL_ZOOM = 3;
+
+const HEATMAP_OPTIONS = {maxZoom: ZOOM_THRESHOLD};
+
 
 // Make map fit viewport.  Prevents overflow and ensures smaller lat/long boundary for efficient requests.
 const styles = {height: '90vh'};
@@ -30,7 +33,7 @@ export default class HeatMap extends Component {
     const {zoom} = this.state;
     console.log("Now showing " + points.length + " points");
     let markers = (zoom >= ZOOM_THRESHOLD) ? renderMarkers(points) : null;
-    let heatmap = (zoom < ZOOM_THRESHOLD)  ? renderHeatMap(points) : renderHeatMap([]);
+    let heatmap = (zoom < ZOOM_THRESHOLD)  ? renderHeatMap(points, HEATMAP_OPTIONS) : renderHeatMap([], HEATMAP_OPTIONS);
 
     return (
       <div style={styles}>
@@ -84,17 +87,12 @@ const renderMarkers = (points) => {
   });
 };
 
-const renderHeatMap = (points, options = {max: 0.1, radius: 0.1, minOpacity: 0.3, blur: 0, maxZoom: 9}) => {
-  let {max, radius, minOpacity, blur, maxZoom} = options;
+const renderHeatMap = (points, options = {maxZoom: ZOOM_THRESHOLD}) => {
+  let {maxZoom} = options;
 
   return (
     <HeatmapLayer
-      max={max}
-      radius={radius}
-      minOpacity={minOpacity}
-      blur={blur}
       maxZoom={maxZoom}
-      gradient={{1.0  : 'red'}}
       points={points}
       longitudeExtractor={m => m[1]}
       latitudeExtractor={m => m[0]}
