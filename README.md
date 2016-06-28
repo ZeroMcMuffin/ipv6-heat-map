@@ -1,5 +1,5 @@
 # ipv6-heat-map
-A heat map representation of IPv6 Addresses.  GeoLite2 data is parsed and formatted into coarse and fine collections of IPs and stored in a Mongo Geospatial index.  
+A heat map representation of IPv6 Addresses.  GeoLite2 data is parsed and formatted into coarse and fine collections of IPs and stored in a Mongo Geospatial index.  The map is powered by React/Redux.
 
 ![alt tag](./screen.png)
 
