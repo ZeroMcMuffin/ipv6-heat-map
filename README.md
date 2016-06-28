@@ -5,7 +5,7 @@ A representation of IPv6 Addresses
 This project includes GeoLite2 data created by MaxMind, available from [http://www.maxmind.com](http://www.maxmind.com).
 
 ### Demo
-You can see a demo [here](http://107.170.40.122/)
+You can see a demo [here](http://107.170.40.122/).
 
 
 
