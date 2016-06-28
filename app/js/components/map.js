@@ -76,7 +76,7 @@ const renderMarkers = (points) => {
   return points.map((point, index) => {
     let label = (point[2] > 2)
       ? <span>Point contains {point[2]} IP addresses.</span>
-      : <span>Points contains the following ips addresses: {point[3].join(',')}.</span>;
+      : <span>Point contains the following ips addresses: {point[3].join(',')}.</span>;
     return (
       <Marker position={[point[0], point[1]]} key={index}>
         <Popup>
